@@ -26,9 +26,6 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
         .container {
@@ -63,87 +60,15 @@
             padding: 2rem 1.5rem;
         }
         
-        /* Progress Bar */
-        .progress-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        .progress-bar .step {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            width: 33.33%;
-        }
-        .progress-bar .step-icon {
-            height: 40px;
-            width: 40px;
-            border-radius: 50%;
-            background: #e2e8f0;
-            color: #64748b;
-            border: 2px solid #e2e8f0;
-            margin: 0 auto 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            transition: all 0.4s ease;
-        }
-        .progress-bar .step-title {
-            font-weight: 600;
-            color: #64748b;
-            transition: all 0.4s ease;
-        }
-        .progress-bar .step.active .step-icon {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-        .progress-bar .step.active .step-title {
-            color: var(--primary-color);
-        }
-        .progress-bar::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 0;
-            height: 4px;
-            width: 100%;
-            background: #e2e8f0;
-            z-index: 0;
-        }
-        .progress-bar .progress-line {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            height: 4px;
-            background: var(--primary-color);
-            width: 0%;
-            transition: width 0.4s ease;
-            z-index: 0;
-        }
-
-
-        .form-step {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-        .form-step-active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .question-group {
             margin-bottom: 2rem;
             padding: 1.5rem;
             background: #f8fafc;
             border-radius: 1rem;
             border-left: 4px solid var(--primary-color);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         
         .question-title {
@@ -248,32 +173,22 @@
             cursor: not-allowed;
         }
         
-        .form-nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 2.5rem;
-        }
-
-        .nav-btn {
+        .submit-btn {
             background: var(--primary-gradient);
             color: white;
             padding: 1rem 2.5rem;
             border: none;
             border-radius: 0.75rem;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 2rem;
         }
-        .nav-btn.prev-btn {
-            background: #64748b;
-        }
-        .nav-btn:hover {
+        .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(79, 70, 229, 0.2);
-        }
-        .nav-btn.prev-btn:hover {
-            box-shadow: 0 10px 25px rgba(100, 116, 139, 0.2);
         }
         
         .success-message {
@@ -303,20 +218,6 @@
             .form-content {
                 padding: 1.5rem 1rem;
             }
-            .progress-bar .step-title {
-                font-size: 0.8rem;
-            }
-            .progress-bar .step-icon {
-                width: 35px;
-                height: 35px;
-            }
-            .form-nav-buttons {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .nav-btn {
-                width: 100%;
-            }
         }
     </style>
 </head>
@@ -329,136 +230,110 @@
         
         <div class="form-content">
             <form id="feedbackForm">
-                <div class="progress-bar">
-                    <div class="progress-line"></div>
-                    <div class="step active">
-                        <div class="step-icon">1</div>
-                        <div class="step-title">Your Profile</div>
+                
+                <div class="question-group">
+                    <div class="question-title"><span class="question-number">1</span> Sector of your product/service</div>
+                    <select class="dropdown" name="sector" required>
+                        <option value="">Select your sector...</option>
+                        <option value="agro-food">Agro & Food Processing</option>
+                        <option value="automobiles">Automobiles & Auto Components</option>
+                        <option value="chemicals">Chemicals & Petrochemicals</option>
+                        <option value="construction">Construction</option>
+                        <option value="defence">Defence & Aerospace</option>
+                        <option value="educational">Educational Services</option>
+                        <option value="electronics-it">Electronics, IT & ITeS</option>
+                        <option value="engineering">Engineering Goods</option>
+                        <option value="event-management">Event Management</option>
+                        <option value="financial">Financial Services & Insurance</option>
+                        <option value="furniture">Furniture & Wood Products</option>
+                        <option value="gems">Gems & Jewellery</option>
+                        <option value="glass">Glass & Ceramics</option>
+                        <option value="hospitality">Hospitality, Tourism & Food Services</option>
+                        <option value="logistics">Logistics, Transport & Infrastructure</option>
+                        <option value="machinery">Machinery & Equipment</option>
+                        <option value="pharma-health">Pharmaceuticals & Healthcare</option>
+                        <option value="retail">Retail Trade</option>
+                        <option value="textiles">Textiles & Apparels</option>
+                        <option value="other">Other Manufacturing/Services</option>
+                    </select>
+                </div>
+                <div class="question-group">
+                    <div class="question-title"><span class="question-number">2</span> Have you ever supplied to any of these before?</div>
+                    <div class="checkbox-group" id="supplyExperienceGroup">
+                        <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="govt"> Government Organizations</label>
+                        <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="psu"> PSUs</label>
+                        <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="private_large"> Private Large & Mega Industries</label>
+                        <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="none" id="supply_none"> None of the above</label>
                     </div>
-                    <div class="step">
-                        <div class="step-icon">2</div>
-                        <div class="step-title">Event Feedback</div>
+                </div>
+                 <div class="question-group">
+                    <div class="question-title"><span class="question-number">3</span> Have you attended any VDP/Procurement Summit before?</div>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="q3_attended_before" value="yes" required> Yes</label>
+                        <label class="radio-item"><input type="radio" name="q3_attended_before" value="no"> No</label>
                     </div>
-                    <div class="step">
-                        <div class="step-icon">3</div>
-                        <div class="step-title">Business Insights</div>
+                </div>
+                <div class="question-group">
+                    <div class="question-title"><span class="question-number">4</span> How relevant were the participating buyers to your business?</div>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="q4_relevance" value="very" required> Very relevant</label>
+                        <label class="radio-item"><input type="radio" name="q4_relevance" value="somewhat"> Somewhat relevant</label>
+                        <label class="radio-item"><input type="radio" name="q4_relevance" value="not"> Not relevant</label>
                     </div>
+                </div>
+                <div class="question-group">
+                    <div class="question-title"><span class="question-number">5</span> Did you receive any inquiries or orders during the VDP?</div>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="q5_inquiries" value="yes" onclick="showOrderValue(true)" required> Yes</label>
+                        <label class="radio-item"><input type="radio" name="q5_inquiries" value="no" onclick="showOrderValue(false)"> No</label>
+                    </div>
+                </div>
+                <div class="question-group" id="orderValueGroup" style="display: none;">
+                    <div class="question-title"><span class="question-number">6</span> Estimated order value (INR)</div>
+                    <input type="text" class="text-input" placeholder="₹" name="orderValue">
+                </div>
+                <div class="question-group">
+                    <div class="question-title"><span class="question-number">7</span> Rate your overall experience at the VDP</div>
+                    <div class="star-rating">
+                        <span class="star" data-rating="1">⭐</span> <span class="star" data-rating="2">⭐</span> <span class="star" data-rating="3">⭐</span> <span class="star" data-rating="4">⭐</span> <span class="star" data-rating="5">⭐</span>
+                        <span style="margin-left: 1rem; color: #64748b;">(1=Poor, 5=Excellent)</span>
+                    </div>
+                    <input type="hidden" name="q7_rating" id="ratingInput" required>
+                </div>
+                <div class="question-group">
+                    <div class="question-title"><span class="question-number">8</span> What aspect was most valuable to you?</div>
+                    <div class="radio-group" id="valuableAspectGroup">
+                        <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="presentations" required> Buyer Presentations</label>
+                        <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="interactions"> One-on-One Interactions</label>
+                        <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="schemes"> Info on Government Schemes</label>
+                        <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="others"> Others: <input type="text" class="text-input other-input" name="q8_valuable_aspect_other" placeholder="Please specify..." disabled></label>
+                    </div>
+                </div>
+                <div class="question-group">
+                    <div class="question-title"><span class="question-number">9</span> Are you aware of the Public Procurement Policy for MSMEs?</div>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="q9_ppp_awareness" value="aware-availed" required> Yes, and I have availed benefits</label>
+                        <label class="radio-item"><input type="radio" name="q9_ppp_awareness" value="aware-not-availed"> Yes, but I haven't availed benefits</label>
+                        <label class="radio-item"><input type="radio" name="q9_ppp_awareness" value="not-aware"> No, I'm not aware</label>
+                    </div>
+                </div>
+                <div class="question-group">
+                    <div class="question-title"><span class="question-number">10</span> Challenges you face in large-scale procurement:</div>
+                    <div class="checkbox-group" id="procurementChallengesGroup">
+                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="awareness"> Lack of awareness</label>
+                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="certification"> Certification/compliance</label>
+                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="financial"> Financial issues</label>
+                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="competition"> Competing with large vendors</label>
+                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="payment_terms"> Long payment cycles</label>
+                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="others"> Others: <input type="text" class="text-input other-input" name="procurement_challenges_other" placeholder="Please specify..." disabled></label>
+                    </div>
+                </div>
+                 <div class="question-group">
+                    <div class="question-title"><span class="question-number">11</span> What improvements would you suggest for future VDPs?</div>
+                    <textarea class="textarea" placeholder="Your suggestions are valuable to us..." name="improvements"></textarea>
                 </div>
 
-                <div class="form-step form-step-active">
-                     <div class="question-group">
-                        <div class="question-title"><span class="question-number">1</span> Sector of your product/service</div>
-                        <select class="dropdown" name="sector" required>
-                            <option value="">Select your sector...</option>
-                            <option value="agro-food">Agro & Food Processing</option>
-                            <option value="automobiles">Automobiles & Auto Components</option>
-                            <option value="chemicals">Chemicals & Petrochemicals</option>
-                            <option value="construction">Construction</option>
-                            <option value="defence">Defence & Aerospace</option>
-                            <option value="educational">Educational Services</option>
-                            <option value="electronics-it">Electronics, IT & ITeS</option>
-                            <option value="engineering">Engineering Goods</option>
-                            <option value="event-management">Event Management</option>
-                            <option value="financial">Financial Services & Insurance</option>
-                            <option value="furniture">Furniture & Wood Products</option>
-                            <option value="gems">Gems & Jewellery</option>
-                            <option value="glass">Glass & Ceramics</option>
-                            <option value="hospitality">Hospitality, Tourism & Food Services</option>
-                            <option value="logistics">Logistics, Transport & Infrastructure</option>
-                            <option value="machinery">Machinery & Equipment</option>
-                            <option value="pharma-health">Pharmaceuticals & Healthcare</option>
-                            <option value="retail">Retail Trade</option>
-                            <option value="textiles">Textiles & Apparels</option>
-                            <option value="other">Other Manufacturing/Services</option>
-                        </select>
-                    </div>
-                    <div class="question-group">
-                        <div class="question-title"><span class="question-number">2</span> Have you ever supplied to any of these before?</div>
-                        <div class="checkbox-group" id="supplyExperienceGroup">
-                            <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="govt"> Government Organizations</label>
-                            <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="psu"> PSUs</label>
-                            <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="private_large"> Private Large & Mega Industries</label>
-                            <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="none" id="supply_none"> None of the above</label>
-                        </div>
-                    </div>
-                     <div class="question-group">
-                        <div class="question-title"><span class="question-number">3</span> Have you attended any VDP/Procurement Summit before?</div>
-                        <div class="radio-group">
-                            <label class="radio-item"><input type="radio" name="q3_attended_before" value="yes" required> Yes</label>
-                            <label class="radio-item"><input type="radio" name="q3_attended_before" value="no"> No</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-step">
-                    <div class="question-group">
-                        <div class="question-title"><span class="question-number">4</span> How relevant were the participating buyers to your business?</div>
-                        <div class="radio-group">
-                            <label class="radio-item"><input type="radio" name="q4_relevance" value="very" required> Very relevant</label>
-                            <label class="radio-item"><input type="radio" name="q4_relevance" value="somewhat"> Somewhat relevant</label>
-                            <label class="radio-item"><input type="radio" name="q4_relevance" value="not"> Not relevant</label>
-                        </div>
-                    </div>
-                    <div class="question-group">
-                        <div class="question-title"><span class="question-number">5</span> Did you receive any inquiries or orders during the VDP?</div>
-                        <div class="radio-group">
-                            <label class="radio-item"><input type="radio" name="q5_inquiries" value="yes" onclick="showOrderValue(true)" required> Yes</label>
-                            <label class="radio-item"><input type="radio" name="q5_inquiries" value="no" onclick="showOrderValue(false)"> No</label>
-                        </div>
-                    </div>
-                    <div class="question-group" id="orderValueGroup" style="display: none;">
-                        <div class="question-title"><span class="question-number">6</span> Estimated order value (INR)</div>
-                        <input type="text" class="text-input" placeholder="₹" name="orderValue">
-                    </div>
-                    <div class="question-group">
-                        <div class="question-title"><span class="question-number">7</span> Rate your overall experience at the VDP</div>
-                        <div class="star-rating">
-                            <span class="star" data-rating="1">⭐</span> <span class="star" data-rating="2">⭐</span> <span class="star" data-rating="3">⭐</span> <span class="star" data-rating="4">⭐</span> <span class="star" data-rating="5">⭐</span>
-                            <span style="margin-left: 1rem; color: #64748b;">(1=Poor, 5=Excellent)</span>
-                        </div>
-                        <input type="hidden" name="q7_rating" id="ratingInput" required>
-                    </div>
-                    <div class="question-group">
-                        <div class="question-title"><span class="question-number">8</span> What aspect was most valuable to you?</div>
-                        <div class="radio-group" id="valuableAspectGroup">
-                            <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="presentations" required> Buyer Presentations</label>
-                            <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="interactions"> One-on-One Interactions</label>
-                            <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="schemes"> Info on Government Schemes</label>
-                            <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="others"> Others: <input type="text" class="text-input other-input" name="q8_valuable_aspect_other" placeholder="Please specify..." disabled></label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-step">
-                    <div class="question-group">
-                        <div class="question-title"><span class="question-number">9</span> Are you aware of the Public Procurement Policy for MSMEs?</div>
-                        <div class="radio-group">
-                            <label class="radio-item"><input type="radio" name="q9_ppp_awareness" value="aware-availed" required> Yes, and I have availed benefits</label>
-                            <label class="radio-item"><input type="radio" name="q9_ppp_awareness" value="aware-not-availed"> Yes, but I haven't availed benefits</label>
-                            <label class="radio-item"><input type="radio" name="q9_ppp_awareness" value="not-aware"> No, I'm not aware</label>
-                        </div>
-                    </div>
-                    <div class="question-group">
-                        <div class="question-title"><span class="question-number">10</span> Challenges you face in large-scale procurement:</div>
-                        <div class="checkbox-group" id="procurementChallengesGroup">
-                            <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="awareness"> Lack of awareness</label>
-                            <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="certification"> Certification/compliance</label>
-                            <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="financial"> Financial issues</label>
-                            <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="competition"> Competing with large vendors</label>
-                            <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="payment_terms"> Long payment cycles</label>
-                            <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="others"> Others: <input type="text" class="text-input other-input" name="procurement_challenges_other" placeholder="Please specify..." disabled></label>
-                        </div>
-                    </div>
-                     <div class="question-group">
-                        <div class="question-title"><span class="question-number">11</span> What improvements would you suggest for future VDPs?</div>
-                        <textarea class="textarea" placeholder="Your suggestions are valuable to us..." name="improvements"></textarea>
-                    </div>
-                </div>
-
-                <div class="form-nav-buttons">
-                    <button type="button" class="nav-btn prev-btn" style="display: none;">Previous</button>
-                    <button type="button" class="nav-btn next-btn">Next</button>
-                </div>
+                <button type="submit" class="submit-btn">Submit Feedback</button>
                 
                 <div class="success-message" id="successMessage">
                     <h3>Thank you for your feedback!</h3>
@@ -470,76 +345,21 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // --- Multi-Step Form Logic ---
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
-        const formSteps = [...document.querySelectorAll('.form-step')];
-        const progressSteps = [...document.querySelectorAll('.progress-bar .step')];
-        const progressLine = document.querySelector('.progress-bar .progress-line');
-        const form = document.getElementById('feedbackForm');
-        let currentStep = 0;
-
-        nextBtn.addEventListener('click', () => {
-            if (validateStep()) {
-                if (currentStep < formSteps.length - 1) {
-                    currentStep++;
-                    showStep(currentStep);
+        // --- Animate questions on scroll ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
-            }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.question-group').forEach(group => {
+            observer.observe(group);
         });
 
-        prevBtn.addEventListener('click', () => {
-            if (currentStep > 0) {
-                currentStep--;
-                showStep(currentStep);
-            }
-        });
-
-        function showStep(stepIndex) {
-            formSteps.forEach((step, index) => {
-                step.classList.toggle('form-step-active', index === stepIndex);
-            });
-            updateProgress(stepIndex);
-            updateNavButtons(stepIndex);
-        }
-
-        function updateProgress(stepIndex) {
-            progressSteps.forEach((step, index) => {
-                step.classList.toggle('active', index <= stepIndex);
-            });
-            const progressPercentage = (stepIndex / (formSteps.length - 1)) * 100;
-            progressLine.style.width = progressPercentage + '%';
-        }
-
-        function updateNavButtons(stepIndex) {
-            prevBtn.style.display = stepIndex > 0 ? 'block' : 'none';
-            if (stepIndex === formSteps.length - 1) {
-                nextBtn.textContent = 'Submit Feedback';
-                nextBtn.type = 'submit'; 
-            } else {
-                nextBtn.textContent = 'Next';
-                nextBtn.type = 'button';
-            }
-        }
-        
-        function validateStep() {
-            const activeStep = formSteps[currentStep];
-            const inputs = activeStep.querySelectorAll('input[required], select[required], textarea[required]');
-            let isValid = true;
-            for (const input of inputs) {
-                if (!input.checkValidity()) {
-                    input.reportValidity(); // Shows browser's validation message
-                    isValid = false;
-                    break; 
-                }
-            }
-            return isValid;
-        }
-
-        showStep(currentStep); // Initialize view
-
-        // --- Other Form Logic ---
-        // Star rating
+        // --- Star rating ---
         const stars = document.querySelectorAll('.star');
         const ratingInput = document.getElementById('ratingInput');
         let currentRating = 0;
@@ -555,14 +375,14 @@
             stars.forEach((star, index) => star.classList.toggle('active', index < rating));
         }
 
-        // Conditional order value field
+        // --- Conditional order value field ---
         window.showOrderValue = function(show) {
             const group = document.getElementById('orderValueGroup');
             group.style.display = show ? 'block' : 'none';
             group.querySelector('input').required = show;
         }
 
-        // Exclusive "None" checkbox
+        // --- Exclusive "None" checkbox ---
         const supplyCheckboxes = document.querySelectorAll('#supplyExperienceGroup input');
         const noneCheckbox = document.getElementById('supply_none');
         supplyCheckboxes.forEach(checkbox => {
@@ -575,7 +395,7 @@
             });
         });
         
-        // "Others" text fields logic
+        // --- "Others" text fields logic ---
         function setupOtherFieldListener(groupId) {
             const group = document.getElementById(groupId);
             if (!group) return;
@@ -593,7 +413,8 @@
         setupOtherFieldListener('valuableAspectGroup');
         setupOtherFieldListener('procurementChallengesGroup');
 
-        // Form submission
+        // --- Form submission ---
+        const form = document.getElementById('feedbackForm');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             if (!form.checkValidity()) {
@@ -603,12 +424,13 @@
             console.log("Form submitted (simulation).");
             setTimeout(() => {
                 document.getElementById('successMessage').style.display = 'block';
-                form.style.display = 'none';
+                // Hide all form elements except the success message
+                [...form.children].forEach(child => {
+                    if(child.id !== 'successMessage') child.style.display = 'none';
+                });
             }, 500);
         });
     });
     </script>
 </body>
 </html>
-
-```
