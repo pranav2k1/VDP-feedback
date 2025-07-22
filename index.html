@@ -110,9 +110,8 @@
             border-radius: 0.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            /* ** Fix Starts Here ** */
-            flex-wrap: wrap; /* Allows items to wrap to the next line */
-            gap: 0.75rem;      /* Creates space between all items in the label */
+            flex-wrap: wrap;
+            gap: 0.75rem;
         }
         
         .checkbox-item:hover, .radio-item:hover {
@@ -121,7 +120,6 @@
         }
         
         .checkbox-item input, .radio-item input {
-            /* margin-right is no longer needed due to gap property */
             transform: scale(1.2);
             flex-shrink: 0;
         }
@@ -164,18 +162,6 @@
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
         
-        .other-input {
-            /* margin-left is no longer needed due to gap property */
-            margin-top: 0; 
-            width: auto;
-            flex-grow: 1; /* Allows the input to fill remaining space */
-        }
-        
-        .other-input:disabled {
-            background-color: #f1f5f9;
-            cursor: not-allowed;
-        }
-        
         .submit-btn {
             background: var(--primary-gradient);
             color: white;
@@ -204,7 +190,6 @@
             display: none;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             :root {
                 --base-font-size: 14px;
@@ -266,7 +251,7 @@
                         <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="govt"> Government Organizations</label>
                         <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="psu"> PSUs</label>
                         <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="private_large"> Private Large & Mega Industries</label>
-                        <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="none" id="supply_none"> None of the above</label>
+                        <label class="checkbox-item"><input type="checkbox" name="supply_experience" value="none" id="supply_none"> None of these</label>
                     </div>
                 </div>
                  <div class="question-group">
@@ -277,7 +262,7 @@
                     </div>
                 </div>
                 <div class="question-group">
-                    <div class="question-title"><span class="question-number">4</span> How relevant were the participating buyers to your business?</div>
+                    <div class="question-title"><span class="question-number">4</span> How relevant were the buyers to your business?</div>
                     <div class="radio-group">
                         <label class="radio-item"><input type="radio" name="q4_relevance" value="very" required> Very relevant</label>
                         <label class="radio-item"><input type="radio" name="q4_relevance" value="somewhat"> Somewhat relevant</label>
@@ -292,7 +277,7 @@
                     </div>
                 </div>
                 <div class="question-group" id="orderValueGroup" style="display: none;">
-                    <div class="question-title"><span class="question-number">6</span> Estimated order value (INR)</div>
+                    <div class="question-title"><span class="question-number">6</span> Estimated order value (INR) (Optional)</div>
                     <input type="text" class="text-input" placeholder="₹" name="orderValue">
                 </div>
                 <div class="question-group">
@@ -309,11 +294,7 @@
                         <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="presentations" required> Buyer Presentations</label>
                         <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="interactions"> One-on-One Interactions</label>
                         <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="schemes"> Info on Government Schemes</label>
-                        <label class="radio-item">
-                            <input type="radio" name="q8_valuable_aspect" value="others">
-                            <span>Others:</span>
-                            <input type="text" class="text-input other-input" name="q8_valuable_aspect_other" placeholder="Please specify..." disabled>
-                        </label>
+                        <label class="radio-item"><input type="radio" name="q8_valuable_aspect" value="food"> Venue & Food</label>
                     </div>
                 </div>
                 <div class="question-group">
@@ -325,22 +306,36 @@
                     </div>
                 </div>
                 <div class="question-group">
-                    <div class="question-title"><span class="question-number">10</span> Challenges you face in large-scale procurement:</div>
+                    <div class="question-title"><span class="question-number">10</span> Are you aware of the TReDS platform?</div>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="q10_treds_awareness" value="aware-onboarded" required> Yes, and I’m onboarded</label>
+                        <label class="radio-item"><input type="radio" name="q10_treds_awareness" value="aware-not-onboarded"> Yes, but not onboarded</label>
+                        <label class="radio-item"><input type="radio" name="q10_treds_awareness" value="not-aware"> No, not aware</label>
+                    </div>
+                </div>
+                <div class="question-group">
+                    <div class="question-title"><span class="question-number">11</span> Challenges you face in government procurement (Optional)</div>
                     <div class="checkbox-group" id="procurementChallengesGroup">
-                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="awareness"> Lack of awareness</label>
-                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="certification"> Certification/compliance</label>
-                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="financial"> Financial issues</label>
+                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="awareness"> Lack of awareness about tendering</label>
+                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="certification"> Certification/compliance requirements</label>
+                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="financial"> Financial issues (e.g., EMD, working capital)</label>
                         <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="competition"> Competing with large vendors</label>
                         <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="payment_terms"> Long payment cycles</label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="procurement_challenges" value="others">
-                            <span>Others:</span>
-                            <input type="text" class="text-input other-input" name="procurement_challenges_other" placeholder="Please specify..." disabled>
-                        </label>
+                        <label class="checkbox-item"><input type="checkbox" name="procurement_challenges" value="none" id="procurement_none"> None of these</label>
+                    </div>
+                </div>
+                <div class="question-group">
+                    <div class="question-title"><span class="question-number">12</span> Challenges you face in your business (Optional)</div>
+                    <div class="checkbox-group" id="businessChallengesGroup">
+                        <label class="checkbox-item"><input type="checkbox" name="business_challenges" value="export_training"> Need for export training</label>
+                        <label class="checkbox-item"><input type="checkbox" name="business_challenges" value="workforce"> Shortage of skilled workforce</label>
+                        <label class="checkbox-item"><input type="checkbox" name="business_challenges" value="financial_support"> Lack of financial support</label>
+                        <label class="checkbox-item"><input type="checkbox" name="business_challenges" value="logistics"> Poor logistics/support infrastructure</label>
+                        <label class="checkbox-item"><input type="checkbox" name="business_challenges" value="none" id="business_none"> None of these</label>
                     </div>
                 </div>
                  <div class="question-group">
-                    <div class="question-title"><span class="question-number">11</span> What improvements would you suggest for future VDPs?</div>
+                    <div class="question-title"><span class="question-number">13</span> What improvements would you suggest for future VDPs? (Optional)</div>
                     <textarea class="textarea" placeholder="Your suggestions are valuable to us..." name="improvements"></textarea>
                 </div>
 
@@ -378,7 +373,7 @@
             star.addEventListener('click', function() {
                 currentRating = parseInt(this.getAttribute('data-rating'));
                 ratingInput.value = currentRating;
-                ratingInput.dispatchEvent(new Event('input')); // for validation
+                ratingInput.dispatchEvent(new Event('input')); 
                 highlightStars(currentRating);
             });
         });
@@ -390,46 +385,46 @@
         window.showOrderValue = function(show) {
             const group = document.getElementById('orderValueGroup');
             group.style.display = show ? 'block' : 'none';
-            group.querySelector('input').required = show;
+            // This field is now optional
+            group.querySelector('input').required = false;
         }
 
-        // --- Exclusive "None" checkbox ---
-        const supplyCheckboxes = document.querySelectorAll('#supplyExperienceGroup input');
-        const noneCheckbox = document.getElementById('supply_none');
-        supplyCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                if (this === noneCheckbox && this.checked) {
-                    supplyCheckboxes.forEach(cb => { if (cb !== noneCheckbox) cb.checked = false; });
-                } else if (this.checked) {
-                    noneCheckbox.checked = false;
-                }
-            });
-        });
-        
-        // --- "Others" text fields logic ---
-        function setupOtherFieldListener(groupId) {
+        // --- Reusable Exclusive "None" checkbox logic ---
+        function setupExclusiveCheckbox(groupId, noneCheckboxId) {
             const group = document.getElementById(groupId);
             if (!group) return;
-            group.addEventListener('change', function(e) {
-                const otherOption = group.querySelector('input[value="others"]');
-                if (!otherOption) return;
-                const textInput = otherOption.closest('label').querySelector('.other-input');
-                if (textInput) {
-                    textInput.disabled = !otherOption.checked;
-                    textInput.required = otherOption.checked;
-                    if (!otherOption.checked) textInput.value = '';
-                }
+
+            const allCheckboxes = group.querySelectorAll('input[type="checkbox"]');
+            const noneCheckbox = document.getElementById(noneCheckboxId);
+            
+            if (!noneCheckbox) return;
+
+            allCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this === noneCheckbox && this.checked) {
+                        // If "None" is checked, uncheck all others in the same group
+                        allCheckboxes.forEach(cb => {
+                            if (cb !== noneCheckbox) cb.checked = false;
+                        });
+                    } else if (this.checked) {
+                        // If any other box is checked, uncheck "None"
+                        noneCheckbox.checked = false;
+                    }
+                });
             });
         }
-        setupOtherFieldListener('valuableAspectGroup');
-        setupOtherFieldListener('procurementChallengesGroup');
 
+        // Apply the logic to all relevant groups
+        setupExclusiveCheckbox('supplyExperienceGroup', 'supply_none');
+        setupExclusiveCheckbox('procurementChallengesGroup', 'procurement_none');
+        setupExclusiveCheckbox('businessChallengesGroup', 'business_none');
+        
         // --- Form submission ---
         const form = document.getElementById('feedbackForm');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             if (!form.checkValidity()) {
-                 alert("Please ensure all required fields are filled correctly before submitting.");
+                 alert("Please fill out all required fields before submitting.");
                  return;
             }
             console.log("Form submitted (simulation).");
